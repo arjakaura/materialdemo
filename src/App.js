@@ -3,12 +3,19 @@ import './App.css';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import ToolBar from '@material-ui/core/Toolbar';
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+
+import About from './Components/About'; 
+import postsdata from './Components/postsdata';
+import Posts from './Components/Posts';
+import Contact from './Components/Contact';
 
 import MainNavigation from './Components/MainNavigation';
-import Posts from './Components/Posts';
 import Footer from './Components/footer';
 
 import { makeStyles } from '@material-ui/styles';
+import { fontFamily } from '@material-ui/system';
+
 
 const useStyles = makeStyles({
   root: {
@@ -20,7 +27,8 @@ const useStyles = makeStyles({
     background: "green"
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily:"Kristen ITC",
   },
   
   
@@ -28,18 +36,24 @@ const useStyles = makeStyles({
 
 const App = () => {
   const classes = useStyles();
+  const posts = postsdata;
   return (
     <div>
+      <Router>
       <AppBar className={classes.root}>
         <ToolBar>
-        <Typography variant="h2" color="primary" className={classes.title}>
-          Matkailua
+        <Typography variant="h3" color="primary" className={classes.title}>
+          On the road...
         </Typography>
         <MainNavigation />
         </ToolBar>
       </AppBar>
-      <Posts />
+          <Route exact path="/" component={Posts} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contact" component={Contact}/>
+      
       <Footer />
+      </Router>
     </div>
       
   );
