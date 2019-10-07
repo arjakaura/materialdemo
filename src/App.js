@@ -6,15 +6,19 @@ import ToolBar from '@material-ui/core/Toolbar';
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import About from './Components/About'; 
-import postsdata from './Components/postsdata';
+
 import Posts from './Components/Posts';
 import Contact from './Components/Contact';
+import postdata from './Components/postdata';
+import Post from './Components/post';
 
 import MainNavigation from './Components/MainNavigation';
 import Footer from './Components/footer';
 
 import { makeStyles } from '@material-ui/styles';
 import { fontFamily } from '@material-ui/system';
+
+
 
 
 const useStyles = makeStyles({
@@ -36,7 +40,7 @@ const useStyles = makeStyles({
 
 const App = () => {
   const classes = useStyles();
-  const posts = postsdata;
+  const posts = postdata;
   return (
     <div>
       <Router>
@@ -48,9 +52,13 @@ const App = () => {
         <MainNavigation />
         </ToolBar>
       </AppBar>
+      <Switch>
           <Route exact path="/" component={Posts} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact}/>
+          <Route path={`/:postId`} render={ (props) => <Post data = {posts} {...props} />}/>
+          
+        </Switch>
       
       <Footer />
       </Router>

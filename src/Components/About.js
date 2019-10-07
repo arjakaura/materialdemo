@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/Styles';
 import { Button } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles(() => ({
@@ -13,6 +14,11 @@ const useStyles = makeStyles(() => ({
 
 })); 
 
+const Link2 = React.forwardRef((props, ref) => (
+    <RouterLink innerRef={ref} to="/" {...props} />
+));
+
+
 
 const About = () => {
     const classes = useStyles();
@@ -22,8 +28,8 @@ const About = () => {
         <div className={classes.root}>
             <h1>This is ABOUT page</h1>
 
-
-            <Button variant="outlined" color="primary">Home</Button>
+            <Button variant="outlined" component={Link2}>Home</Button> 
+            
         </div>
     );
 };

@@ -7,8 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { List, ListItem, ListItemText, Link } from '@material-ui/core';
+import { List, ListItem, ListItemText} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+import { BrowserRouter as Router, Switch, Route,Link} from "react-router-dom";
 
 import { makeStyles } from '@material-ui/styles';
 import { FormGroup, Button } from '@material-ui/core';
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 
     listitem: {
         color: "#305792",
-        marginTop: 100,
+        
     },
 
     list: {
@@ -39,12 +40,12 @@ const useStyles = makeStyles({
 const listitems = [
     {
         text: "Good to know",
-        url: "https://www.rantapallo.fi/me-teemme-rantapallon/",
+        path: '/goodtoknow',
         id: 5
     },
     {
         text: "Archive",
-        url: "https://www.rantapallo.fi/artikkelit/",
+        path: '/archive',
         id: 6
     },
 
@@ -58,13 +59,12 @@ const Footer = () => {
             <Grid container className={classes.list}>
                 <Grid item xs={6}>
                     <List>
-                        {listitems.map(item => (
-                            <ListItem className={classes.listitem} key={item.id} >
-                                <ListItemText>
-                                    <Typography>{item.text}</Typography>
-                                </ListItemText>
-                            </ListItem>
-                        ))}
+                        <ListItem>
+                                <Link>Good to know</Link>
+                         </ListItem>
+                         <ListItem>
+                                <Link>Archive</Link>
+                         </ListItem>
                     </List>
                 </Grid >
                 <Grid item xs={6}>
